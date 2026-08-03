@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UDMZ | Universe Disaster Mitigation Zimbabwe</title>
+    <style>
+        /* Basic Reset */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        
+        /* Color Palette */
+        :root {
+            --dark-blue: #0b132b; 
+            --earth-blue: #1c2541; 
+            --peace-white: #ffffff;
+            --growth-green: #2ecc71; 
+            --growth-green-hover: #27ae60;
+            --text-gray: #4a5568;
+            --light-bg: #f8f9fa;
+        }
+
+        /* Navigation */
+        header { 
+            background-color: var(--dark-blue); 
+            padding: 15px 50px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            color: var(--peace-white); 
+            border-bottom: 2px solid var(--growth-green);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .brand { display: flex; align-items: center; gap: 15px; }
+        .logo-img { height: 70px; border-radius: 8px; background-color: white; padding: 2px;}
+        .brand-text h2 { font-size: 22px; letter-spacing: 1px; }
+        .brand-text span { font-size: 11px; color: #a0aec0; letter-spacing: 2px; text-transform: uppercase;}
+
+        nav a { color: var(--peace-white); text-decoration: none; margin-left: 25px; font-weight: 500; transition: color 0.3s;}
+        nav a:hover { color: var(--growth-green); }
+        
+        .donate-btn { 
+            background-color: var(--growth-green); 
+            padding: 10px 24px; 
+            border-radius: 30px; 
+            color: var(--peace-white) !important; 
+            font-weight: bold;
+        }
+        .donate-btn:hover { background-color: var(--growth-green-hover); }
+
+        /* Hero Section */
+        .hero { 
+            background: linear-gradient(rgba(11, 19, 43, 0.75), rgba(11, 19, 43, 0.85)), url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover; 
+            padding: 100px 20px; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center; 
+            color: var(--peace-white); 
+            text-align: center; 
+        }
+        .hero h1 { font-size: 50px; margin-bottom: 15px; font-weight: 700; text-transform: uppercase; }
+        .hero h3 { font-size: 24px; font-style: italic; margin-bottom: 25px; color: var(--growth-green); font-weight: 400;}
+        .hero p { font-size: 20px; margin-bottom: 40px; max-width: 800px; line-height: 1.6; }
+        
+        /* Section Formatting */
+        section { padding: 80px 10%; }
+        .section-title { font-size: 36px; color: var(--dark-blue); margin-bottom: 20px; text-align: center; }
+        .section-subtitle { font-size: 18px; color: var(--text-gray); text-align: center; max-width: 800px; margin: 0 auto 50px auto; line-height: 1.6; }
+        
+        /* About Section */
+        .about-content { display: flex; gap: 40px; align-items: flex-start; flex-wrap: wrap; }
+        .about-text { flex: 1; min-width: 300px; font-size: 17px; line-height: 1.8; color: var(--text-gray); }
+        .about-text p { margin-bottom: 15px; }
+        .highlight-box { flex: 1; min-width: 300px; background-color: var(--earth-blue); color: white; padding: 40px; border-radius: 10px; border-left: 5px solid var(--growth-green); }
+        .highlight-box h3 { margin-bottom: 15px; font-size: 24px; color: var(--growth-green);}
+        .highlight-box ul { list-style-position: inside; line-height: 1.8; }
+
+        /* The 4 Pillars Section */
+        .pillars-bg { background-color: var(--light-bg); }
+        .pillars-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
+        .pillar-card { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border-top: 4px solid var(--growth-green); transition: transform 0.3s; }
+        .pillar-card:hover { transform: translateY(-5px); }
+        .pillar-card h3 { color: var(--earth-blue); margin-bottom: 15px; font-size: 20px; }
+        .pillar-card p { color: var(--text-gray); line-height: 1.6; font-size: 15px; margin-bottom: 10px;}
+        .pillar-card ul { margin-left: 20px; color: var(--text-gray); font-size: 14px; line-height: 1.6; }
+
+        /* Future Center Section */
+        .center-section { background-color: var(--dark-blue); color: white; text-align: center; }
+        .center-section h2 { color: var(--growth-green); font-size: 36px; margin-bottom: 20px; }
+        .center-section p { max-width: 900px; margin: 0 auto 30px auto; font-size: 18px; line-height: 1.8; }
+
+        /* Contact Section */
+        .contact-section { background-color: white; }
+        .contact-grid { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; margin-top: 40px; }
+        .contact-card { background: var(--light-bg); padding: 40px 20px; border-radius: 10px; text-align: center; width: 300px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border-bottom: 4px solid var(--growth-green); }
+        .contact-card h3 { color: var(--earth-blue); margin-bottom: 15px; font-size: 22px; }
+        .contact-card p, .contact-card a { color: var(--text-gray); font-size: 18px; line-height: 1.6; text-decoration: none; font-weight: 500; }
+        .contact-card a:hover { color: var(--growth-green); }
+        .icon { font-size: 40px; margin-bottom: 15px; }
+
+        /* Footer */
+        footer { background-color: #050a17; color: var(--peace-white); text-align: center; padding: 30px; }
+        footer p { font-size: 14px; color: #a0aec0; }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="brand">
+            <img src="logo.jpg" alt="UDMZ Logo" class="logo-img">
+            <div class="brand-text">
+                <h2>UDMZ</h2>
+                <span>Universe Disaster Mitigation</span>
+            </div>
+        </div>
+        <nav>
+            <a href="#about">Who We Are</a>
+            <a href="#pillars">Our Methodology</a>
+            <a href="#center">The Centre</a>
+            <a href="#contact">Contact</a>
+            <a href="#contact" class="donate-btn">Support Us</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Disaster Mitigation & Recovery Support</h1>
+        <h3>Peace, Love & Harmony</h3>
+        <p>A registered non-profit organization dedicated to alleviating and managing natural and human disasters in Zimbabwe and the entire universe. We seek to transform humankind and protect the earth.</p>
+        <a href="#about" class="donate-btn" style="font-size: 18px; padding: 15px 35px;">Learn About Our Mission</a>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2 class="section-title">Organizational Profile</h2>
+        <p class="section-subtitle">Registered Private Voluntary Organisation under the Ministry of Public Service, Labour and Social Welfare.</p>
+        
+        <div class="about-content">
+            <div class="about-text">
+                <p><strong>Universe Disaster Mitigation Zimbabwe (UDMZ)</strong> is a wholly owned indigenous non-profit making organisation. Our core business is to alleviate and manage natural and human disasters in Zimbabwe and across the planet.</p>
+                <p>We seek to transform humankind to pursue their purpose through training, workshops, transfer of knowledge, skills, and God’s word. We stand active against all enemies of peace, love, and security, mitigating threats to humans, animals, and the environment.</p>
+                <p><strong>Our Methodology:</strong> UDMZ operates in partnership with all relevant stakeholders inclusive of internal and external individuals, communities, local government authorities, parastatals, private companies, and various government departments.</p>
+            </div>
+            
+            <div class="highlight-box">
+                <h3>Our Objectives</h3>
+                <ul>
+                    <li>Focus on disaster alleviation, public education, and awareness.</li>
+                    <li>Establish a Rehabilitation centre for disaster survivors.</li>
+                    <li>Provide emergency aid and empowerment to survivors.</li>
+                    <li>Actively oppose all forms of violence to humanity and the environment.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- The 4 Pillars Section -->
+    <section id="pillars" class="pillars-bg">
+        <h2 class="section-title">Our Pillars of Restoration</h2>
+        <p class="section-subtitle">UDMZ seeks to restore and protect the earth and its inhabitants through four core areas of management.</p>
+        
+        <div class="pillars-grid">
+            <div class="pillar-card">
+                <h3>🌍 Human Domination</h3>
+                <p>Humankind was given the stewardship and authority to protect and manage the environment at creation. We work to eradicate factors that advance environmental degradation and natural/human disasters, fulfilling our God-given mandate.</p>
+            </div>
+            <div class="pillar-card">
+                <h3>🕊️ Soul Management</h3>
+                <p>Addressing vast emotional suffering emanating from abuse and worldly challenges. We seek to establish rehabilitation & legal centres for:</p>
+                <ul>
+                    <li>Mentally disturbed patients</li>
+                    <li>Drug abuse survivors</li>
+                    <li>Survivors of abuse and violence</li>
+                    <li>Disaster and accident survivors</li>
+                    <li>Vulnerable groups (elderly, street kids)</li>
+                </ul>
+            </div>
+            <div class="pillar-card">
+                <h3>🌱 Environment Management</h3>
+                <p>We are deeply committed to the physical restoration and protection of mother earth, specifically focusing on:</p>
+                <ul>
+                    <li>Restoration and protection of forests</li>
+                    <li>Protection of all water bodies</li>
+                    <li>Proper waste management & recycling</li>
+                    <li>Infrastructure development</li>
+                </ul>
+            </div>
+            <div class="pillar-card">
+                <h3>🛡️ Peace, Security & Disasters</h3>
+                <p>Breaking threats to peace and security through sustainable livelihood projects, humanitarian aid, and establishing quick reaction teams for disasters in partnership with state security, EMA, and local authorities.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Center Section -->
+    <section id="center" class="center-section">
+        <h2>Establishing the UDMZ Centre</h2>
+        <p>Our grand vision is to establish a unified Disaster Alleviation and Management Centre. This will serve as a base for training, resource storage, community preparedness programs, and emergency response operations.</p>
+        <p>This space will uniquely house relevant departments in one area—including social development, police, legal practitioners, EMA, Parks and Wildlife Management, local government, and private security—to holistically and rapidly address issues brought by vulnerable communities.</p>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <h2 class="section-title">Get In Touch</h2>
+        <p class="section-subtitle">Partner with us, support our mission, or reach out to learn more about how we can build a better future together.</p>
+        
+        <div class="contact-grid">
+            <!-- Address Card -->
+            <div class="contact-card">
+                <div class="icon">📍</div>
+                <h3>Our Location</h3>
+                <p>22 Ngajea</p>
+                <p>Zimbabwe</p>
+            </div>
+            
+            <!-- Phone Card -->
+            <div class="contact-card">
+                <div class="icon">📞</div>
+                <h3>Call Us</h3>
+                <p>Contact: Dee</p>
+                <!-- This links to the phone dialer -->
+                <a href="tel:093837719">093837719</a>
+            </div>
+            
+            <!-- Email Card -->
+            <div class="contact-card">
+                <div class="icon">✉️</div>
+                <h3>Email Us</h3>
+                <p>Contact: Dee</p>
+                <!-- This links to the user's email app -->
+                <a href="mailto:dee@gmail.com">dee@gmail.com</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Universe Disaster Mitigation Zimbabwe (UDMZ). Registered NGO in Zimbabwe.</p>
+        <p style="margin-top: 10px;">Designed by 220 Group.</p>
+    </footer>
+
+</body>
+</html>
