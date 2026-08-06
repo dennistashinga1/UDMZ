@@ -5,8 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UDMZ | Universe Disaster Mitigation Zimbabwe</title>
     <style>
-        /* Basic Reset */
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        /* Basic Reset & Box Sizing */
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+        }
+
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+        }
         
         /* Color Palette */
         :root {
@@ -19,10 +29,10 @@
             --light-bg: #f8f9fa;
         }
 
-        /* Navigation */
+        /* Navigation Header */
         header { 
             background-color: var(--dark-blue); 
-            padding: 15px 50px; 
+            padding: 15px 5%; 
             display: flex; 
             justify-content: space-between; 
             align-items: center; 
@@ -32,27 +42,93 @@
             top: 0;
             z-index: 1000;
         }
-        .brand { display: flex; align-items: center; gap: 15px; }
-        .logo-img { height: 70px; border-radius: 8px; background-color: white; padding: 2px;}
-        .brand-text h2 { font-size: 22px; letter-spacing: 1px; }
-        .brand-text span { font-size: 11px; color: #a0aec0; letter-spacing: 2px; text-transform: uppercase;}
 
-        nav a { color: var(--peace-white); text-decoration: none; margin-left: 25px; font-weight: 500; transition: color 0.3s;}
-        nav a:hover { color: var(--growth-green); }
+        .brand { 
+            display: flex; 
+            align-items: center; 
+            gap: 12px; 
+        }
+
+        .logo-img { 
+            height: 55px; 
+            width: auto;
+            border-radius: 8px; 
+            background-color: white; 
+            padding: 2px;
+            object-fit: contain;
+        }
+
+        .brand-text h2 { 
+            font-size: 20px; 
+            letter-spacing: 1px; 
+            line-height: 1.2;
+        }
+
+        .brand-text span { 
+            font-size: 10px; 
+            color: #a0aec0; 
+            letter-spacing: 1px; 
+            text-transform: uppercase;
+            display: block;
+        }
+
+        /* Desktop Nav */
+        nav {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a { 
+            color: var(--peace-white); 
+            text-decoration: none; 
+            margin-left: 20px; 
+            font-weight: 500; 
+            font-size: 15px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover { 
+            color: var(--growth-green); 
+        }
         
         .donate-btn { 
             background-color: var(--growth-green); 
-            padding: 10px 24px; 
+            padding: 10px 20px; 
             border-radius: 30px; 
             color: var(--peace-white) !important; 
             font-weight: bold;
+            display: inline-block;
+            text-align: center;
         }
-        .donate-btn:hover { background-color: var(--growth-green-hover); }
+
+        .donate-btn:hover { 
+            background-color: var(--growth-green-hover); 
+        }
+
+        /* Hamburger Menu Icon (Mobile) */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 28px;
+            height: 21px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .menu-toggle span {
+            height: 3px;
+            width: 100%;
+            background-color: var(--peace-white);
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
 
         /* Hero Section */
         .hero { 
-            background: linear-gradient(rgba(11, 19, 43, 0.75), rgba(11, 19, 43, 0.85)), url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover; 
-            padding: 100px 20px; 
+            background: linear-gradient(rgba(11, 19, 43, 0.8), rgba(11, 19, 43, 0.85)), 
+                        url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover; 
+            padding: 90px 20px; 
             display: flex; 
             flex-direction: column; 
             justify-content: center; 
@@ -60,54 +136,304 @@
             color: var(--peace-white); 
             text-align: center; 
         }
-        .hero h1 { font-size: 50px; margin-bottom: 15px; font-weight: 700; text-transform: uppercase; }
-        .hero h3 { font-size: 24px; font-style: italic; margin-bottom: 25px; color: var(--growth-green); font-weight: 400;}
-        .hero p { font-size: 20px; margin-bottom: 40px; max-width: 800px; line-height: 1.6; }
+
+        .hero h1 { 
+            font-size: clamp(28px, 5vw, 48px); 
+            margin-bottom: 15px; 
+            font-weight: 700; 
+            text-transform: uppercase; 
+            line-height: 1.2;
+        }
+
+        .hero h3 { 
+            font-size: clamp(18px, 3vw, 24px); 
+            font-style: italic; 
+            margin-bottom: 20px; 
+            color: var(--growth-green); 
+            font-weight: 400;
+        }
+
+        .hero p { 
+            font-size: clamp(15px, 2.5vw, 19px); 
+            margin-bottom: 35px; 
+            max-width: 800px; 
+            line-height: 1.6; 
+        }
         
         /* Section Formatting */
-        section { padding: 80px 10%; }
-        .section-title { font-size: 36px; color: var(--dark-blue); margin-bottom: 20px; text-align: center; }
-        .section-subtitle { font-size: 18px; color: var(--text-gray); text-align: center; max-width: 800px; margin: 0 auto 50px auto; line-height: 1.6; }
+        section { 
+            padding: 70px 8%; 
+        }
+
+        .section-title { 
+            font-size: clamp(24px, 4vw, 36px); 
+            color: var(--dark-blue); 
+            margin-bottom: 15px; 
+            text-align: center; 
+        }
+
+        .section-subtitle { 
+            font-size: clamp(15px, 2vw, 18px); 
+            color: var(--text-gray); 
+            text-align: center; 
+            max-width: 800px; 
+            margin: 0 auto 40px auto; 
+            line-height: 1.6; 
+        }
         
         /* About Section */
-        .about-content { display: flex; gap: 40px; align-items: flex-start; flex-wrap: wrap; }
-        .about-text { flex: 1; min-width: 300px; font-size: 17px; line-height: 1.8; color: var(--text-gray); }
-        .about-text p { margin-bottom: 15px; }
-        .highlight-box { flex: 1; min-width: 300px; background-color: var(--earth-blue); color: white; padding: 40px; border-radius: 10px; border-left: 5px solid var(--growth-green); }
-        .highlight-box h3 { margin-bottom: 15px; font-size: 24px; color: var(--growth-green);}
-        .highlight-box ul { list-style-position: inside; line-height: 1.8; }
+        .about-content { 
+            display: flex; 
+            gap: 30px; 
+            align-items: stretch; 
+            flex-wrap: wrap; 
+        }
 
-        /* The 4 Pillars Section */
-        .pillars-bg { background-color: var(--light-bg); }
-        .pillars-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
-        .pillar-card { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border-top: 4px solid var(--growth-green); transition: transform 0.3s; }
-        .pillar-card:hover { transform: translateY(-5px); }
-        .pillar-card h3 { color: var(--earth-blue); margin-bottom: 15px; font-size: 20px; }
-        .pillar-card p { color: var(--text-gray); line-height: 1.6; font-size: 15px; margin-bottom: 10px;}
-        .pillar-card ul { margin-left: 20px; color: var(--text-gray); font-size: 14px; line-height: 1.6; }
+        .about-text { 
+            flex: 1; 
+            min-width: 280px; 
+            font-size: 16px; 
+            line-height: 1.8; 
+            color: var(--text-gray); 
+        }
+
+        .about-text p { 
+            margin-bottom: 15px; 
+        }
+
+        .highlight-box { 
+            flex: 1; 
+            min-width: 280px; 
+            background-color: var(--earth-blue); 
+            color: white; 
+            padding: 30px; 
+            border-radius: 10px; 
+            border-left: 5px solid var(--growth-green); 
+        }
+
+        .highlight-box h3 { 
+            margin-bottom: 15px; 
+            font-size: 22px; 
+            color: var(--growth-green);
+        }
+
+        .highlight-box ul { 
+            list-style-position: inside; 
+            line-height: 1.8; 
+        }
+
+        /* Pillars Section */
+        .pillars-bg { 
+            background-color: var(--light-bg); 
+        }
+
+        .pillars-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); 
+            gap: 25px; 
+        }
+
+        .pillar-card { 
+            background: white; 
+            padding: 25px; 
+            border-radius: 8px; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05); 
+            border-top: 4px solid var(--growth-green); 
+            transition: transform 0.3s; 
+        }
+
+        .pillar-card:hover { 
+            transform: translateY(-5px); 
+        }
+
+        .pillar-card h3 { 
+            color: var(--earth-blue); 
+            margin-bottom: 15px; 
+            font-size: 20px; 
+        }
+
+        .pillar-card p { 
+            color: var(--text-gray); 
+            line-height: 1.6; 
+            font-size: 15px; 
+            margin-bottom: 10px;
+        }
+
+        .pillar-card ul { 
+            margin-left: 20px; 
+            color: var(--text-gray); 
+            font-size: 14px; 
+            line-height: 1.6; 
+        }
 
         /* Future Center Section */
-        .center-section { background-color: var(--dark-blue); color: white; text-align: center; }
-        .center-section h2 { color: var(--growth-green); font-size: 36px; margin-bottom: 20px; }
-        .center-section p { max-width: 900px; margin: 0 auto 30px auto; font-size: 18px; line-height: 1.8; }
+        .center-section { 
+            background-color: var(--dark-blue); 
+            color: white; 
+            text-align: center; 
+        }
+
+        .center-section h2 { 
+            color: var(--growth-green); 
+            font-size: clamp(26px, 4vw, 36px); 
+            margin-bottom: 20px; 
+        }
+
+        .center-section p { 
+            max-width: 900px; 
+            margin: 0 auto 20px auto; 
+            font-size: clamp(15px, 2.2vw, 18px); 
+            line-height: 1.7; 
+        }
 
         /* Contact Section */
-        .contact-section { background-color: white; }
-        .contact-grid { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; margin-top: 40px; }
-        .contact-card { background: var(--light-bg); padding: 40px 20px; border-radius: 10px; text-align: center; width: 300px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border-bottom: 4px solid var(--growth-green); }
-        .contact-card h3 { color: var(--earth-blue); margin-bottom: 15px; font-size: 22px; }
-        .contact-card p, .contact-card a { color: var(--text-gray); font-size: 18px; line-height: 1.6; text-decoration: none; font-weight: 500; }
-        .contact-card a:hover { color: var(--growth-green); }
-        .icon { font-size: 40px; margin-bottom: 15px; }
+        .contact-section { 
+            background-color: white; 
+        }
+
+        .contact-grid { 
+            display: flex; 
+            justify-content: center; 
+            gap: 25px; 
+            flex-wrap: wrap; 
+            margin-top: 30px; 
+        }
+
+        .contact-card { 
+            background: var(--light-bg); 
+            padding: 30px 20px; 
+            border-radius: 10px; 
+            text-align: center; 
+            width: 100%;
+            max-width: 320px; 
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05); 
+            border-bottom: 4px solid var(--growth-green); 
+        }
+
+        .contact-card h3 { 
+            color: var(--earth-blue); 
+            margin-bottom: 15px; 
+            font-size: 20px; 
+        }
+
+        .contact-card p, .contact-card a { 
+            color: var(--text-gray); 
+            font-size: 16px; 
+            line-height: 1.6; 
+            text-decoration: none; 
+            font-weight: 500; 
+            word-break: break-word;
+        }
+
+        .contact-card a:hover { 
+            color: var(--growth-green); 
+        }
+
+        .icon { 
+            font-size: 36px; 
+            margin-bottom: 12px; 
+        }
 
         /* Footer */
-        footer { background-color: #050a17; color: var(--peace-white); text-align: center; padding: 30px; }
-        footer p { font-size: 14px; color: #a0aec0; }
+        footer { 
+            background-color: #050a17; 
+            color: var(--peace-white); 
+            text-align: center; 
+            padding: 25px 15px; 
+        }
+
+        footer p { 
+            font-size: 13px; 
+            color: #a0aec0; 
+            line-height: 1.5;
+        }
+
+        /* =========================================
+           MOBILE & TABLET RESPONSIVE MEDIA QUERIES 
+           ========================================= */
+        @media (max-width: 768px) {
+            header {
+                padding: 12px 20px;
+            }
+
+            .logo-img {
+                height: 48px;
+            }
+
+            .brand-text h2 {
+                font-size: 18px;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            /* Collapsible Mobile Navigation Dropdown */
+            nav {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--dark-blue);
+                flex-direction: column;
+                align-items: center;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.4s ease-in-out, padding 0.3s ease;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                box-shadow: 0 10px 15px rgba(0,0,0,0.2);
+            }
+
+            nav.active {
+                max-height: 350px;
+                padding: 20px 0;
+            }
+
+            nav a {
+                margin: 12px 0;
+                font-size: 16px;
+                width: 80%;
+                text-align: center;
+            }
+
+            .donate-btn {
+                margin-top: 10px;
+                width: 80%;
+                padding: 12px 20px;
+            }
+
+            section {
+                padding: 50px 5%;
+            }
+
+            .hero {
+                padding: 60px 15px;
+            }
+
+            .hero .donate-btn {
+                width: 100%;
+                max-width: 280px;
+                font-size: 16px !important;
+                padding: 14px 20px !important;
+            }
+
+            .about-content {
+                flex-direction: column;
+            }
+
+            .highlight-box {
+                padding: 25px 20px;
+            }
+
+            .contact-card {
+                max-width: 100%;
+            }
+        }
     </style>
 </head>
 <body>
 
-    <!-- Header -->
+    <!-- Header / Navigation -->
     <header>
         <div class="brand">
             <img src="logo.jpg" alt="UDMZ Logo" class="logo-img">
@@ -116,12 +442,20 @@
                 <span>Universe Disaster Mitigation</span>
             </div>
         </div>
-        <nav>
-            <a href="#about">Who We Are</a>
-            <a href="#pillars">Our Methodology</a>
-            <a href="#center">The Centre</a>
-            <a href="#contact">Contact</a>
-            <a href="#contact" class="donate-btn">Support Us</a>
+
+        <!-- Mobile Hamburger Menu Button -->
+        <div class="menu-toggle" id="mobile-menu-btn" onclick="toggleMenu()" aria-label="Toggle navigation menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <nav id="nav-menu">
+            <a href="#about" onclick="closeMenu()">Who We Are</a>
+            <a href="#pillars" onclick="closeMenu()">Our Methodology</a>
+            <a href="#center" onclick="closeMenu()">The Centre</a>
+            <a href="#contact" onclick="closeMenu()">Contact</a>
+            <a href="#contact" class="donate-btn" onclick="closeMenu()">Support Us</a>
         </nav>
     </header>
 
@@ -130,7 +464,7 @@
         <h1>Disaster Mitigation & Recovery Support</h1>
         <h3>Peace, Love & Harmony</h3>
         <p>A registered non-profit organization dedicated to alleviating and managing natural and human disasters in Zimbabwe and the entire universe. We seek to transform humankind and protect the earth.</p>
-        <a href="#about" class="donate-btn" style="font-size: 18px; padding: 15px 35px;">Learn About Our Mission</a>
+        <a href="#about" class="donate-btn" style="font-size: 17px; padding: 14px 30px;">Learn About Our Mission</a>
     </section>
 
     <!-- About Section -->
@@ -222,16 +556,14 @@
                 <div class="icon">📞</div>
                 <h3>Call Us</h3>
                 <p>Contact: Mr Washington</p>
-                <!-- This links to the phone dialer -->
-                <a href="tel:+263 772453492">+263 772453492</a>
+                <a href="tel:+263772453492">+263 772 453 492</a>
             </div>
             
             <!-- Email Card -->
             <div class="contact-card">
                 <div class="icon">✉️</div>
                 <h3>Email Us</h3>
-                <p>Contact: UNIVERSE DISASTER MITIGATION ZIMBABWE</p>
-                <!-- This links to the user's email app -->
+                <p>Contact: UDMZ Support</p>
                 <a href="mailto:udmzim@gmail.com">udmzim@gmail.com</a>
             </div>
         </div>
@@ -240,8 +572,22 @@
     <!-- Footer -->
     <footer>
         <p>&copy; 2026 Universe Disaster Mitigation Zimbabwe (UDMZ). Registered NGO in Zimbabwe.</p>
-        <p style="margin-top: 10px;">Designed by 220.</p>
+        <p style="margin-top: 8px;">Designed by 220.</p>
     </footer>
 
+    <!-- Simple JavaScript for Mobile Menu Navigation -->
+    <script>
+        function toggleMenu() {
+            const nav = document.getElementById('nav-menu');
+            nav.classList.toggle('active');
+        }
+
+        function closeMenu() {
+            const nav = document.getElementById('nav-menu');
+            if (nav.classList.contains('active')) {
+                nav.classList.remove('active');
+            }
+        }
+    </script>
 </body>
 </html>
